@@ -1,0 +1,36 @@
+.container {
+    width: 100%;
+    max-width: $container-primary;
+    margin: 0 auto;
+    padding-inline: $container-padding;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+}
+
+.section {
+    padding-block: 8rem;
+
+    @media (max-width: 768px) {
+        padding-block: 6.4rem;
+    }
+}
+
+.section-title {
+    font-family: $font-secondary;
+    font-size: 4rem;
+    color: $color-primary;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+        font-size: 3rem;
+    }
+}

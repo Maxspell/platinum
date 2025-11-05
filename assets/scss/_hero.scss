@@ -1,0 +1,57 @@
+.hero {
+    // height: 90.4rem;
+}
+
+.hero__inner {
+    padding-block: 4rem;
+}
+
+.hero__media {}
+
+.hero__video {}
+
+.hero__content {}
+
+.hero__title {
+    font-family: $font-secondary;
+    font-size: 8rem;
+    line-height: 1.1;
+    color: $color-primary;
+}
+
+.hero__button {
+    margin-block-start: 2.4rem;
+}
+
+.hero__services {
+    margin-block-start: 8rem;
+}
+
+.hero__services-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.hero__services-item {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    padding: 2.4rem;
+
+    &:nth-child(3n) {
+        border-right: 0;
+    }
+}
+
+.hero__services-icon {
+    width: 4rem;
+    height: 4rem;
+}
+
+.hero__services-title {
+    font-family: $font-tertiary;
+    font-size: 1.4rem;
+    color: #fff;
+}

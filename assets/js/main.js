@@ -14,6 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const courseTexts = document.querySelectorAll('.our-courses__text');
+
+    courseTexts.forEach(textBlock => {
+        textBlock.addEventListener('click', () => {
+            textBlock.classList.toggle('is-open');
+
+            if (textBlock.classList.contains('is-open')) {
+                textBlock.style.height = textBlock.scrollHeight + 'px';
+            } else {
+                textBlock.style.height = '18rem';
+            }
+        });
+    });
+});
+
+
 const initSwiper = () => {
     if (typeof Swiper !== 'undefined') {
         new Swiper('.services__slider', {
@@ -24,6 +41,22 @@ const initSwiper = () => {
             navigation: {
                 nextEl: '.services__slider .swiper-button--next',
                 prevEl: '.services__slider .swiper-button--prev',
+            },
+        });
+
+        new Swiper('.doctors__slider', {
+            slidesPerView: 1.5,
+            spaceBetween: 16,
+            grabCursor: true,
+            loop: true,
+            navigation: {
+                nextEl: '.doctors__slider .swiper-button--next',
+                prevEl: '.doctors__slider .swiper-button--prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3,
+                },
             },
         });
     }

@@ -14,9 +14,7 @@ $services = $hero_section['services'] ?? [];
 <section class="hero">
     <div class="container">
         <div class="hero__inner">
-            <div class="hero__media">
-                <img src="<?php echo esc_url($video); ?>" alt="Відео" class="hero__video">
-            </div>
+
             <div class="hero__content">
 
                 <?php if ($title) : ?>
@@ -51,5 +49,9 @@ $services = $hero_section['services'] ?? [];
             <?php endif; ?>
 
         </div>
+    </div>
+
+    <div class="hero__media">
+        <img src="<?php echo esc_url($video); ?>" alt="Відео" class="hero__video">
     </div>
 </section>

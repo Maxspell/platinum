@@ -6,9 +6,18 @@
     width: fit-content;
     color: #0A0A0A;
     background: $color-primary;
+    border: 1px solid $color-primary;
     border-radius: 0.8rem;
-    padding: 1.2rem 2.4rem;
-    transition: background-color 0.3s linear, color 0.3s linear;
+    padding: 1.1rem 2.4rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    transition: background-color 0.3s linear, color 0.3s linear, border 0.3s linear;
+}
+
+.button:hover {
+    color: $color-primary;
+    background: #0A0A0A;
+    border: 1px solid $color-primary;
 }
 
 /* ==== SWIPER NAVIGATION BUTTONS ==== */

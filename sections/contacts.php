@@ -6,64 +6,74 @@ if (empty($contacts_section) || $contacts_section['disabled']) {
 }
 
 $title = $contacts_section['title'] ?? '';
-$subtitle = $contacts_section['subtitle'] ?? '';
-$email = $contacts_section['email'] ?? '';
-$phone_list = $contacts_section['phone_list'] ?? '';
-$text = $contacts_section['text'] ?? '';
-$button = $contacts_section['button'] ?? '';
-$donate_title = $contacts_section['donate_title'] ?? '';
-$donate_subtitle = $contacts_section['donate_subtitle'] ?? '';
-$donate_button = $contacts_section['donate_button'] ?? '';
-$donate_card = $contacts_section['donate_card'] ?? '';
-$donate_text = $contacts_section['donate_text'] ?? '';
+$schedule = $contacts_section['schedule'] ?? '';
+$phone = $contacts_section['phone'] ?? '';
+$address = $contacts_section['address'] ?? '';
+$social_list = $contacts_section['social_list'] ?? [];
+$contact_form = $contacts_section['contact_form'] ?? '';
+$google_map = $contacts_section['google_map'] ?? '';
 ?>
 
-<section id="contacts" class="contacts section">
-    <div class="container container--primary">
-        <div class="contacts__inner">
-            <div class="contacts__content">
-                <h2 class="contacts__title section-title"><?php echo $title; ?></h2>
-                <div class="contacts__subtitle"><?php echo $subtitle; ?></div>
-                <div class="contacts__email">
-                    <a href="<?php echo $email['url']; ?>"><?php echo $email['title']; ?></a>
+<section class="contacts section">
+    <div class="container">
+        <?php if ($title) : ?>
+            <h2 class="contacts__title section-title"><?php echo $title; ?></h2>
+        <?php endif; ?>
+        <div class="contacts__columns">
+            <div class="contacts__column">
+                <div class="contacts__schedule">
+                    <?php echo $schedule; ?>
                 </div>
-                <?php if ($phone_list) : ?>
-                    <ul class="contacts__phone-list">
-                        <?php foreach ($phone_list as $phone) : ?>
-                            <li class="contacts__phone-item">
-                                <a href="<?php echo $phone['item']['url']; ?>"><?php echo $phone['item']['title']; ?></a>
+                <div class="contacts__phone">
+                    <a href="<?php echo $phone['url']; ?>"><?php echo $phone['title']; ?></a>
+                </div>
+                <div class="contacts__address">
+                    <?php echo $address; ?>
+                </div>
+                <?php if (!empty($social_list)) : ?>
+                    <div class="contacts__social-title">Соцмережі</div>
+                    <ul class="contacts__social">
+                        <?php foreach ($social_list as $item) : ?>
+                            <li>
+                                <a href="<?php echo $item['link']['url']; ?>" class="contacts__social-link button contacts__social-link--<?php echo $item['icon_class']; ?>">
+                                    <?php echo $item['link']['title']; ?>
+                                </a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
-                <div class="contacts__text">
-                    <?php echo $text; ?>
-                </div>
-                <a href="<?php echo esc_url($button['url']); ?>" class="contacts__button button button--secondary">
-                    <span><?php echo esc_html($button['title']); ?></span>
-                    <svg class="arrow-btn" aria-hidden="true">
-                        <use href="/wp-content/themes/platinum/assets/icons/icons.svg#arrow-btn"></use>
-                    </svg>
-                </a>
             </div>
-            <div class="contacts__donate">
-                <div class="contacts__donate-title section-title"><?php echo $donate_title; ?></div>
-                <div class="contacts__donate-subtitle"><?php echo $donate_subtitle; ?></div>
-                <div class="contacts__donate-buttons">
-                    <a href="<?php echo esc_url($donate_button['url']); ?>" class="contacts__donate-button button">
-                        <span><?php echo esc_html($donate_button['title']); ?></span>
-                        <svg class="arrow-btn" aria-hidden="true">
-                            <use href="/wp-content/themes/platinum/assets/icons/icons.svg#arrow-btn"></use>
-                        </svg>
-                    </a>
-                    <div class="contacts__donate-card">
-                        <?php echo $donate_card; ?>
-                    </div>
-                </div>
-                <div class="contacts__donate-text">
-                    <?php echo $donate_text; ?>
+            <div class="contacts__column">
+                <div class="contacts__form">
+                    <form class="contacts-form" action="#" method="post">
+                        <h3 class="contacts-form__title">Зворотній зв’язок</h3>
+
+                        <div class="contacts-form__fields">
+                            <div class="contacts-form__field">
+                                <input type="text" name="name" id="contacts-name" class="contacts-form__input" placeholder="Ім’я та Прізвище" required>
+                            </div>
+
+                            <div class="contacts-form__field">
+                                <input type="tel" name="phone" id="contacts-phone" class="contacts-form__input" placeholder="+380" required>
+                            </div>
+                        </div>
+
+                        <div class="contacts-form__agreement">
+                            <label class="contacts-form__checkbox">
+                                <input type="checkbox" name="agreement" required>
+                                <span class="contacts-form__checkmark"></span>
+                            </label>
+                            <p class="contacts-form__text">Погоджуюсь з умовами обробки персональних даних</p>
+                        </div>
+
+                        <button type="submit" class="contacts-form__button button">Отримати дзвінок</button>
+                    </form>
                 </div>
             </div>
+
+        </div>
+        <div class="contacts__map">
+            <?php echo $google_map; ?>
         </div>
     </div>
 </section>

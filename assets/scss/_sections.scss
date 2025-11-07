@@ -244,6 +244,131 @@
     color: #a8a8a8;
 }
 
+/* Dental Courses */
+.dental-courses {}
+
+.dental-courses__title {
+    margin-bottom: 4.8rem;
+
+    @media (max-width: 768px) {
+        margin-bottom: 3.2rem;
+    }
+}
+
+.dental-courses__title span {
+    display: block;
+    color: #808080;
+    font-size: 2.4rem;
+    line-height: 1.333;
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+.dental-courses__columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 3.2rem;
+    }
+}
+
+.dental-courses__column {}
+
+.dental-courses__column h3 {
+    font-family: $font-secondary;
+    font-size: 2.4rem;
+    line-height: 1.333;
+    margin-bottom: 0.8rem;
+}
+
+.dental-courses__column--left {}
+
+.dental-courses__left-text {}
+
+.dental-courses__author {
+    display: flex;
+    gap: 2.4rem;
+    border-top: 1px solid #333333;
+    padding-top: 2.4rem;
+    margin-top: 2.4rem;
+}
+
+.dental-courses__author-image {
+    flex-shrink: 0;
+    max-width: 14.6rem;
+    aspect-ratio: 146 / 104;
+
+    @media (max-width: 768px) {
+        max-width: 9.6rem;
+        aspect-ratio: 96 / 131;
+    }
+}
+
+.dental-courses__author-image img {
+    border-radius: 0.8rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.dental-courses__author-info {}
+
+.dental-courses__author-name {
+    font-family: $font-secondary;
+    font-size: 2.4rem;
+    line-height: 1.333;
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
+    }
+}
+
+.dental-courses__author-description {
+    font-family: $font-tertiary;
+    font-size: 1.4rem;
+    color: #808080;
+}
+
+.dental-courses__column--right {}
+
+.dental-courses__right-text {}
+
+.dental-courses__media {
+    position: relative;
+    aspect-ratio: 1140 / 560;
+    margin-top: 8rem;
+
+    @media (max-width: 768px) {
+        margin-top: 6.4rem;
+    }
+}
+
+.dental-courses__media::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8rem;
+    height: 8rem;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 6.6665C33.4073 6.6665 26.9626 8.62147 21.481 12.2842C15.9993 15.9469 11.7269 21.1529 9.20399 27.2437C6.68107 33.3346 6.02096 40.0368 7.30713 46.5028C8.59331 52.9689 11.768 58.9083 16.4297 63.5701C21.0915 68.2318 27.0309 71.4065 33.497 72.6927C39.963 73.9789 46.6652 73.3187 52.7561 70.7958C58.847 68.2729 64.0529 64.0005 67.7156 58.5188C71.3783 53.0372 73.3333 46.5925 73.3333 39.9998C73.3333 35.6224 72.4711 31.2879 70.796 27.2437C69.1208 23.1995 66.6655 19.5249 63.5702 16.4296C60.4749 13.3343 56.8003 10.879 52.7561 9.20385C48.7119 7.5287 44.3774 6.6665 40 6.6665ZM33.3333 54.9998V24.9998L53.3333 39.9998L33.3333 54.9998Z' fill='%23F5F5F5'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.dental-courses__video {
+    border-radius: 0.8rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
 /* Our Courses */
 .our-courses__title {
     margin-bottom: 3.2rem;
@@ -392,4 +517,103 @@
 
 .our-courses__button {
     flex: 1;
+}
+
+/* Shop */
+.shop {
+    background-color: $color-primary;
+}
+
+.shop__columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 3.2rem;
+    }
+}
+
+.shop__title {
+    color: #0A0A0A;
+}
+
+.shop__subtitle {
+    color: #0A0A0A;
+    font-family: $font-secondary;
+    font-size: 2.4rem;
+    line-height: 1.333;
+    margin-bottom: 1.6rem;
+
+    @media (max-width: 768px) {
+        font-family: $font-primary;
+        font-size: 1.6rem;
+    }
+}
+
+.shop__description {
+    color: #0A0A0A;
+    font-size: 1.8rem;
+    line-height: 1.333;
+
+    @media (max-width: 768px) {
+        font-size: 1.6rem;
+    }
+}
+
+.shop__buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin-top: 3.2rem;
+
+    @media (max-width: 768px) {
+        gap: 1.2rem;
+    }
+}
+
+.shop__button {
+    background-color: #0A0A0A;
+    color: #fff;
+}
+
+.shop__button:hover {
+    background-color: #fff;
+    color: #0A0A0A;
+    border: 1px solid #0A0A0A;
+}
+
+.shop__products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.shop__product {
+    border-radius: 1.6rem;
+    background-color: #fff;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        &:last-child {
+            display: none;
+        }
+    }
+}
+
+.shop__product-image {
+    margin-bottom: 2.4rem;
+}
+
+.shop__product-title {
+    font-size: 1.8rem;
+    color: #0A0A0A;
+    line-height: 1.333;
+    border-top: 1px solid $color-primary;
+    padding: 1.6rem;
 }

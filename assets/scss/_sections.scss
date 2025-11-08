@@ -19,6 +19,8 @@
     align-items: center;
     border: 1px solid #333333;
     border-radius: 1.6rem;
+    background-position: center;
+    background-size: contain;
     padding: 1.6rem;
     min-height: 28rem;
     text-align: center;
@@ -616,4 +618,57 @@
     line-height: 1.333;
     border-top: 1px solid $color-primary;
     padding: 1.6rem;
+}
+
+/* Cases */
+.cases {
+    &__title {
+        margin-bottom: 4.8rem;
+        text-align: center;
+    }
+
+
+    &__tabs {
+        margin-bottom: 2rem;
+
+        &-list {
+            display: flex;
+            gap: 1.6rem;
+            flex-wrap: wrap;
+        }
+
+        &-item {
+            color: #808080;
+            cursor: pointer;
+            padding: 1.2rem;
+            text-transform: uppercase;
+
+            &.is-active {
+                color: $color-primary;
+                border: 1px solid #80808033;
+                border-radius: 0.8rem;
+                background: linear-gradient(120.61deg, #333333 0%, #1E1E1E 100%);
+            }
+        }
+    }
+
+    &__slider-wrapper {
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+    }
+
+    &__slide-media {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+    }
+
+    &__slide-image img,
+    &__slide-video video {
+        width: 100%;
+        object-fit: cover;
+    }
 }

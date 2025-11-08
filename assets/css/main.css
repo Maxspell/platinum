@@ -613,6 +613,8 @@ button {
   align-items: center;
   border: 1px solid #333333;
   border-radius: 1.6rem;
+  background-position: center;
+  background-size: contain;
   padding: 1.6rem;
   min-height: 28rem;
   text-align: center;
@@ -1201,6 +1203,48 @@ button {
   line-height: 1.333;
   border-top: 1px solid #F5F5F5;
   padding: 1.6rem;
+}
+
+/* Cases */
+.cases__title {
+  margin-bottom: 4.8rem;
+  text-align: center;
+}
+.cases__tabs {
+  margin-bottom: 2rem;
+}
+.cases__tabs-list {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+.cases__tabs-item {
+  color: #808080;
+  cursor: pointer;
+  padding: 1.2rem;
+  text-transform: uppercase;
+}
+.cases__tabs-item.is-active {
+  color: #F5F5F5;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 0.8rem;
+  background: linear-gradient(120.61deg, #333333 0%, #1E1E1E 100%);
+}
+.cases__slider-wrapper {
+  display: none;
+}
+.cases__slider-wrapper.is-active {
+  display: block;
+}
+.cases__slide-media {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+.cases__slide-image img, .cases__slide-video video {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .contacts__title {

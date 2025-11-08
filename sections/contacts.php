@@ -35,7 +35,7 @@ $google_map = $contacts_section['google_map'] ?? '';
                     <ul class="contacts__social">
                         <?php foreach ($social_list as $item) : ?>
                             <li>
-                                <a href="<?php echo $item['link']['url']; ?>" class="contacts__social-link button contacts__social-link--<?php echo $item['icon_class']; ?>">
+                                <a href="<?php echo $item['link']['url']; ?>" class="contacts__social-link button contacts__social-link--<?php echo $item['icon_class']; ?>" target="_blank">
                                     <?php echo $item['link']['title']; ?>
                                 </a>
                             </li>

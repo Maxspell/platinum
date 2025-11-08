@@ -33,6 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const initSwiper = () => {
     if (typeof Swiper !== 'undefined') {
+        new Swiper('.reviews__slider', {
+            slidesPerView: 1.3,
+            spaceBetween: 16,
+            grabCursor: true,
+            loop: true,
+            navigation: {
+                nextEl: '.reviews__slider .swiper-button--next',
+                prevEl: '.reviews__slider .swiper-button--prev',
+            },
+            pagination: {
+                el: '.reviews__pagination',
+                type: 'progressbar',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
         new Swiper('.services__slider', {
             slidesPerView: 1,
             spaceBetween: 0,
@@ -98,3 +118,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.reviews__video video');
+    const popup = document.getElementById('reviewsPopup');
+    const popupVideo = popup.querySelector('video');
+    const closeBtn = popup.querySelector('.reviews__popup-close');
+    const body = document.body;
+
+    videos.forEach(video => {
+        video.addEventListener('mouseenter', () => video.play());
+        video.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        video.addEventListener('click', e => {
+            const src = e.currentTarget.closest('.reviews__video').dataset.video;
+            popupVideo.src = src;
+            popup.classList.add('is-active');
+            body.classList.add('lock');
+            popupVideo.play();
+        });
+    });
+
+    const closePopup = () => {
+        popup.classList.remove('is-active');
+        body.classList.remove('lock');
+        popupVideo.pause();
+        popupVideo.src = '';
+    };
+
+    closeBtn.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', e => {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && popup.classList.contains('is-active')) {
+            closePopup();
+        }
+    });
+});
+

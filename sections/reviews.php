@@ -41,7 +41,104 @@ $list = $reviews_section['list'] ?? [];
                 <div class="swiper-pagination reviews__pagination"></div>
             </div>
         <?php endif; ?>
+
+        <div class="reviews__columns">
+            <div class="reviews__column">
+                <div class="reviews__item">
+                    <div class="reviews__item-stats">
+                        <span class="reviews__averege-rating section-title">4.6</span>
+                        <span class="reviews-count">444 відгука</span>
+                    </div>
+                    <div class=""><a href="#">Наш рейтинг на Google</a></div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__item-header">
+                        <div class="reviews__item-avatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="reviews__item-info">
+                            <div class="reviews__item-title">Валентина Хоменко</div>
+                            <div class="reviews__item-rating"></div>
+                            <div class="reviews__item-date">24 травня 2025</div>
+                        </div>
+                        <div class="reviews__item-logo"></div>
+                    </div>
+                    <div class="reviews__item-body">
+                        Вже кілька років користуюсь платформою Хорошоп для ведення інтернет-магазину — і це одне з найкращих рішень для e-commerce в Україні. Простий, інтуїтивно зрозумілий конструктор сайту дозволяє швидко запустити сучасний інтернет-магазин з усім необхідним функціоналом: зручна адміністративна панель, інтеграція з Prom, Rozetka, Google Shopping, Nova Poshta, платіжними системами, можливість SEO-налаштувань. Особливо хочеться відзначити підтримку клієнтів — завжди оперативно відповідають, допомагають вирішити будь-яке питання. Постійно додають нові оновлення, адаптуються до ринку, розвиваються разом з бізнесом. Рекомендую Хорошоп усім підприємцям, хто хоче мати надійний, швидкий та красивий інтернет-магазин без зайвих витрат на програмістів. Це ідеальний варіант для малого та середнього бізнесу!
+                    </div>
+                </div>
+            </div>
+            <div class="reviews__column">
+                <div class="reviews__item">
+                    <div class="reviews__item-header">
+                        <div class="reviews__item-avatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="reviews__item-info">
+                            <div class="reviews__item-title">Валентина Хоменко</div>
+                            <div class="reviews__item-rating"></div>
+                            <div class="reviews__item-date">24 травня 2025</div>
+                        </div>
+                        <div class="reviews__item-logo"></div>
+                    </div>
+                    <div class="reviews__item-body">
+                        Переїзд на платформу Хорошоп був для мене непростим. Спочатку було складно адаптуватися: часто потрапляла до різних менеджерів, через що доводилося по кілька разів повторювати одні й ті ж запитання — це дуже нервувало. Але з часом я розібралася, як правильно формулювати запити, і тоді все кардинально змінилося. Менеджери реагують дуже швидко, навіть у вихідні дні. Консультації завжди вичерпні, з чіткими порадами та прикладами. Зараз я справді задоволена. Платформа зручна, технічна підтримка на високому рівні. Рекомендую!
+                    </div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__item-header">
+                        <div class="reviews__item-avatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="reviews__item-info">
+                            <div class="reviews__item-title">Валентина Хоменко</div>
+                            <div class="reviews__item-rating"></div>
+                            <div class="reviews__item-date">24 травня 2025</div>
+                        </div>
+                        <div class="reviews__item-logo"></div>
+                    </div>
+                    <div class="reviews__item-body">
+                        Працюємо з платформою Хорошоп з 2022 року, подобаються вбудовані функції для налаштування інтернет-магазину та можливість налаштувати все без програмістів
+                    </div>
+                </div>
+            </div>
+            <div class="reviews__column">
+                <div class="reviews__item">
+                    <div class="reviews__item-header">
+                        <div class="reviews__item-avatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="reviews__item-info">
+                            <div class="reviews__item-title">Валентина Хоменко</div>
+                            <div class="reviews__item-rating"></div>
+                            <div class="reviews__item-date">24 травня 2025</div>
+                        </div>
+                        <div class="reviews__item-logo"></div>
+                    </div>
+                    <div class="reviews__item-body">
+                        Вже кілька років користуюсь платформою Хорошоп для ведення інтернет-магазину — і це одне з найкращих рішень для e-commerce в Україні. Простий, інтуїтивно зрозумілий конструктор сайту дозволяє швидко запустити сучасний інтернет-магазин з усім необхідним функціоналом: зручна адміністративна панель, інтеграція з Prom, Rozetka, Google Shopping, Nova Poshta, платіжними системами, можливість SEO-налаштувань. Особливо хочеться відзначити підтримку клієнтів — завжди оперативно відповідають, допомагають вирішити будь-яке питання. Постійно додають нові оновлення, адаптуються до ринку, розвиваються разом з бізнесом. Рекомендую Хорошоп усім підприємцям, хто хоче мати надійний, швидкий та красивий інтернет-магазин без зайвих витрат на програмістів. Це ідеальний варіант для малого та середнього бізнесу!
+                    </div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__item-header">
+                        <div class="reviews__item-avatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="reviews__item-info">
+                            <div class="reviews__item-title">Валентина Хоменко</div>
+                            <div class="reviews__item-rating"></div>
+                            <div class="reviews__item-date">24 травня 2025</div>
+                        </div>
+                        <div class="reviews__item-logo"></div>
+                    </div>
+                    <div class="reviews__item-body">
+                        Переїзд на платформу Хорошоп був для мене непростим. Спочатку було складно адаптуватися: часто потрапляла до різних менеджерів, через що доводилося по кілька разів повторювати одні й ті ж запитання — це дуже нервувало. Але з часом я розібралася, як правильно формулювати запити, і тоді все кардинально змінилося. Менеджери реагують дуже швидко, навіть у вихідні дні. Консультації завжди вичерпні, з чіткими порадами та прикладами. Зараз я справді задоволена. Платформа зручна, технічна підтримка на високому рівні. Рекомендую!
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <div class="reviews__popup" id="reviewsPopup">
         <div class="reviews__popup-inner">

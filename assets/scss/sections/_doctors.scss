@@ -1,0 +1,31 @@
+.doctors {}
+
+.doctors__title {
+    margin-bottom: 4.8rem;
+}
+
+.doctors__slider {
+
+    @media (max-width: 768px) {
+        margin-right: -2.4rem;
+    }
+}
+
+.doctors__slide-image {
+    margin-bottom: 2.4rem;
+}
+
+.doctors__slide-image img {
+    border-radius: 0.8rem;
+}
+
+.doctors__slide-title {
+    font-family: $font-secondary;
+    font-size: 2.4rem;
+    color: #fff;
+    line-height: 1.333;
+}
+
+.doctors__slide-text {
+    color: #a8a8a8;
+}

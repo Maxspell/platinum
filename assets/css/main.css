@@ -780,13 +780,14 @@ button {
   transition: width 0.3s ease;
 }
 
-.reviews__columns {
+.reviews__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.4rem;
+  margin-top: 8rem;
 }
 
-.reviews__item {
+.reviews__card {
   background-color: #0F0F0F;
   border-radius: 1.6rem;
   border: 1px solid #333333;
@@ -795,35 +796,35 @@ button {
   padding-inline: 2.4rem;
 }
 
-.reviews__item-stats {
+.reviews__summary-stats {
   display: flex;
   justify-content: space-between;
   gap: 1.6rem;
   margin-bottom: 0.8rem;
 }
 
-.reviews__item-header {
+.reviews__card-header {
   display: flex;
   gap: 1.6rem;
   margin-bottom: 2.4rem;
 }
 
-.reviews__item-avatar {
+.reviews__card-avatar {
   width: 6.4rem;
   height: 6.4rem;
 }
 
-.reviews__item-title {
+.reviews__card-author {
   font-size: 1.8rem;
   color: #fff;
 }
 
-.reviews__item-date {
+.reviews__card-date {
   font-size: 1.2rem;
   color: #A8A8A8;
 }
 
-.reviews__item-logo {
+.reviews__card-badge {
   margin-left: auto;
 }
 

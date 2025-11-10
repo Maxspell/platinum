@@ -34,19 +34,27 @@ $list = $cases_section['list'] ?? [];
                         <div class="cases__slider swiper">
                             <div class="swiper-wrapper">
                                 <?php foreach ($sub_list as $sub_item) : ?>
+                                    <?php
+                                    $type       = $sub_item['type'] ?? '';
+                                    $image      = $sub_item['image'] ?? '';
+                                    $video_file = $sub_item['video_file'] ?? '';
+                                    ?>
+
                                     <div class="cases__slide swiper-slide">
                                         <div class="cases__slide-media">
-                                            <div class="cases__slide-image">
-                                                <img src="<?php echo esc_url($sub_item['image_1']); ?>" alt="">
-                                            </div>
-                                            <div class="cases__slide-image">
-                                                <img src="<?php echo esc_url($sub_item['image_2']); ?>" alt="">
-                                            </div>
-                                            <div class="cases__slide-video">
-                                                <?php if (!empty($sub_item['video_file'])) : ?>
-                                                    <video src="<?php echo esc_url($sub_item['video_file']); ?>" muted playsinline></video>
-                                                <?php endif; ?>
-                                            </div>
+
+                                            <?php if ($type === 'image' && !empty($image)) : ?>
+                                                <div class="cases__slide-image">
+                                                    <img src="<?php echo esc_url($image); ?>" alt="">
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if ($type === 'file' && !empty($video_file)) : ?>
+                                                <div class="cases__slide-video">
+                                                    <video src="<?php echo esc_url($video_file); ?>" muted playsinline></video>
+                                                </div>
+                                            <?php endif; ?>
+
                                         </div>
                                     </div>
                                 <?php endforeach; ?>

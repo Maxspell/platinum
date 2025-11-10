@@ -1026,14 +1026,15 @@ button {
   display: block;
 }
 .cases__slide-media {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
+  aspect-ratio: 380/475;
+  overflow: hidden;
 }
 .cases__slide-image img, .cases__slide-video video {
+  aspect-ratio: 380/475;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  display: block;
 }
 
 .doctors__title {

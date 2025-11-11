@@ -52,6 +52,6 @@ $services = $hero_section['services'] ?? [];
     </div>
 
     <div class="hero__media">
-        <img src="<?php echo esc_url($video); ?>" alt="Відео" class="hero__video">
+        <video src="<?php echo esc_url($video); ?>" autoplay muted loop playsinline preload="auto" class="hero__video"></video>
     </div>
 </section>

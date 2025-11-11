@@ -50,7 +50,7 @@ $list = $cases_section['list'] ?? [];
                                             <?php endif; ?>
 
                                             <?php if ($type === 'file' && !empty($video_file)) : ?>
-                                                <div class="cases__slide-video">
+                                                <div class="cases__slide-video" data-video="<?php echo esc_url($video_file); ?>">
                                                     <video src="<?php echo esc_url($video_file); ?>" muted playsinline></video>
                                                 </div>
                                             <?php endif; ?>
@@ -66,5 +66,12 @@ $list = $cases_section['list'] ?? [];
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+    </div>
+
+    <div class="cases__popup" id="casesPopup">
+        <div class="cases__popup-inner">
+            <span class="cases__popup-close">&times;</span>
+            <video controls playsinline></video>
+        </div>
     </div>
 </section>

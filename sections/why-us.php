@@ -21,7 +21,7 @@ $list = $why_us_section['list'] ?? [];
                     $item_description = $item['description'] ?? '';
                     $item_image = $item['image'] ?? '';
                 ?>
-                    <div class="why-us__item" style="background-image: url('<?php echo esc_url($item_image); ?>')">
+                    <div class="why-us__item" style="--bg-image: url('<?php echo esc_url($item_image); ?>')">
                         <div class="why-us__item-content">
                             <div class="why-us__item-title">
                                 <?= $item_title ?>

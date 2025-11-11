@@ -93,11 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const sliders = [];
     document.querySelectorAll('.cases__slider').forEach((el) => {
         const swiper = new Swiper(el, {
-            slidesPerView: 3,
+            slidesPerView: 1,
             spaceBetween: 0,
             navigation: {
                 nextEl: el.querySelector('.swiper-button--next'),
                 prevEl: el.querySelector('.swiper-button--prev'),
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3,
+                },
             },
             loop: true,
         });
@@ -133,6 +138,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
         video.addEventListener('click', e => {
             const src = e.currentTarget.closest('.reviews__video').dataset.video;
+            popupVideo.src = src;
+            popup.classList.add('is-active');
+            body.classList.add('lock');
+            popupVideo.play();
+        });
+    });
+
+    const closePopup = () => {
+        popup.classList.remove('is-active');
+        body.classList.remove('lock');
+        popupVideo.pause();
+        popupVideo.src = '';
+    };
+
+    closeBtn.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', e => {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && popup.classList.contains('is-active')) {
+            closePopup();
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.cases__slide-video video');
+    const popup = document.getElementById('casesPopup');
+    const popupVideo = popup.querySelector('video');
+    const closeBtn = popup.querySelector('.cases__popup-close');
+    const body = document.body;
+
+    videos.forEach(video => {
+        video.addEventListener('mouseenter', () => video.play());
+        video.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        video.addEventListener('click', e => {
+            const src = e.currentTarget.closest('.cases__slide-video').dataset.video;
             popupVideo.src = src;
             popup.classList.add('is-active');
             body.classList.add('lock');

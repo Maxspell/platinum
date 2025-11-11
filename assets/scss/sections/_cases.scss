@@ -49,4 +49,94 @@
         object-fit: cover;
         display: block;
     }
+
+    &__slide-video {
+        position: relative;
+        cursor: pointer;
+
+        video {
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.03);
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8rem;
+            height: 8rem;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 6.66675C33.4073 6.66675 26.9626 8.62171 21.481 12.2844C15.9994 15.9471 11.7269 21.1531 9.20402 27.244C6.6811 33.3348 6.02099 40.0371 7.30716 46.5031C8.59334 52.9691 11.768 58.9086 16.4298 63.5703C21.0915 68.2321 27.031 71.4068 33.497 72.6929C39.963 73.9791 46.6653 73.319 52.7561 70.7961C58.847 68.2732 64.0529 64.0007 67.7157 58.5191C71.3784 53.0375 73.3333 46.5928 73.3333 40.0001C73.3333 35.6227 72.4711 31.2882 70.796 27.244C69.1208 23.1998 66.6655 19.5251 63.5702 16.4299C60.4749 13.3346 56.8003 10.8793 52.7561 9.2041C48.7119 7.52894 44.3774 6.66675 40 6.66675ZM33.3333 55.0001V25.0001L53.3333 40.0001L33.3333 55.0001Z' fill='%23F5F5F5'/%3E%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+            cursor: pointer;
+        }
+    }
+
+    &__popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(12px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        padding: 2rem;
+
+        &.is-active {
+            display: flex;
+        }
+
+        &-inner {
+            position: relative;
+            width: 100%;
+            max-width: 37rem;
+            aspect-ratio: 370 / 570;
+            border-radius: 0.8rem;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            display: block;
+            background-color: #000;
+        }
+
+        &-close {
+            position: absolute;
+            top: -2rem;
+            right: -2rem;
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .cases__popup-inner {
+        max-width: 95%;
+        aspect-ratio: 370 / 570;
+    }
+
+    .cases__popup-close {
+        top: -1.5rem;
+        right: -1.5rem;
+        font-size: 2.4rem;
+    }
 }

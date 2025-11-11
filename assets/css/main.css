@@ -664,7 +664,7 @@ button {
   overflow: hidden;
 }
 
-.why-us__item::before {
+.why-us__item::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -673,6 +673,19 @@ button {
   background-position: center;
   background-size: contain;
   opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .why-us__item::after {
+    background-size: cover;
+  }
+}
+
+.why-us__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   -webkit-backdrop-filter: blur(0);
           backdrop-filter: blur(0);
   z-index: 1;
@@ -680,11 +693,6 @@ button {
   transition: -webkit-backdrop-filter 0.4s ease;
   transition: backdrop-filter 0.4s ease;
   transition: backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
-}
-@media (max-width: 768px) {
-  .why-us__item::before {
-    background-size: cover;
-  }
 }
 
 .why-us__item:hover::before {

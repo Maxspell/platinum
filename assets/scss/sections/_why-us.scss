@@ -30,7 +30,7 @@
     overflow: hidden;
 }
 
-.why-us__item::before {
+.why-us__item::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -39,14 +39,22 @@
     background-position: center;
     background-size: contain;
     opacity: 0.2;
-    backdrop-filter: blur(0);
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
-    transition: backdrop-filter 0.4s ease;
 
     @media (max-width: 768px) {
         background-size: cover;
     }
+}
+
+.why-us__item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(0);
+    z-index: 1;
+    pointer-events: none;
+    transition: backdrop-filter 0.4s ease;
 }
 
 .why-us__item:hover::before {

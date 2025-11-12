@@ -308,3 +308,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && popup.classList.contains('is-active')) closePopup();
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.burger-menu');
+    const menu = document.querySelector('.header__mobile-menu');
+
+    if (burger && menu) {
+        burger.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-open');
+            burger.classList.toggle('active', isOpen);
+        });
+    }
+});
+

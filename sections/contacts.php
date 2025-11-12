@@ -45,29 +45,19 @@ $google_map = $contacts_section['google_map'] ?? '';
             </div>
             <div class="contacts__column">
                 <div class="contacts__form">
-                    <form class="contacts-form" action="#" method="post">
-                        <h3 class="contacts-form__title">Зворотній зв’язок</h3>
+                    <?php echo do_shortcode('[contact-form-7 id="52a0100" title="Contact Form" html_class="contacts-form"]'); ?>
+                </div>
 
-                        <div class="contacts-form__fields">
-                            <div class="contacts-form__field">
-                                <input type="text" name="name" id="contacts-name" class="contacts-form__input" placeholder="Ім’я та Прізвище" required>
-                            </div>
-
-                            <div class="contacts-form__field">
-                                <input type="tel" name="phone" id="contacts-phone" class="contacts-form__input" placeholder="+380" required>
-                            </div>
+                <div class="contacts__success">
+                    <div class="contacts__success-content">
+                        <div class="contacts__success-title section-title">Дякуємо!</div>
+                        <div class="contacts__success-message">
+                            Найближчим часом з Вами зв’яжеться наш менеджер для консультації.
                         </div>
-
-                        <div class="contacts-form__agreement">
-                            <label class="contacts-form__checkbox">
-                                <input type="checkbox" name="agreement" required>
-                                <span class="contacts-form__checkmark"></span>
-                            </label>
-                            <p class="contacts-form__text">Погоджуюсь з умовами обробки персональних даних</p>
-                        </div>
-
-                        <button type="submit" class="contacts-form__button button">Отримати дзвінок</button>
-                    </form>
+                        <div class="contacts__success-name"></div>
+                        <div class="contacts__success-phone"></div>
+                        <button type="button" class="contacts__success-button button">Добре, чекатиму</button>
+                    </div>
                 </div>
             </div>
 

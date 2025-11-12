@@ -212,3 +212,99 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const formWrapper = document.querySelector('.contacts__form');
+    const successWrapper = document.querySelector('.contacts__success');
+    const successName = document.querySelector('.contacts__success-name');
+    const successPhone = document.querySelector('.contacts__success-phone');
+    const successButton = document.querySelector('.contacts__success-button');
+
+    // Проверка на наличие всех ключевых элементов
+    if (!formWrapper || !successWrapper) return;
+
+    // Настраиваем плавность появления (один раз)
+    formWrapper.style.transition = 'opacity 0.4s ease';
+    successWrapper.style.transition = 'opacity 0.4s ease';
+
+    // При успешной отправке формы CF7
+    document.addEventListener('wpcf7mailsent', function (event) {
+        const form = event.target;
+
+        // Проверяем, что событие относится именно к этой форме
+        if (!formWrapper.contains(form)) return;
+
+        const nameInput = form.querySelector('input[name="your-name"]');
+        const phoneInput = form.querySelector('input[name="your-phone"]');
+
+        const nameValue = nameInput ? nameInput.value.trim() : '';
+        const phoneValue = phoneInput ? phoneInput.value.trim() : '';
+
+        if (successName) successName.textContent = nameValue ? `Ім'я: ${nameValue}` : '';
+        if (successPhone) successPhone.textContent = phoneValue ? `Телефон: ${phoneValue}` : '';
+
+        // Анимация — скрываем форму, показываем success
+        formWrapper.style.opacity = '0';
+        setTimeout(() => {
+            formWrapper.style.display = 'none';
+            successWrapper.style.display = 'block';
+            requestAnimationFrame(() => {
+                successWrapper.style.opacity = '1';
+            });
+        }, 400);
+    });
+
+    // Обратное действие — кнопка "Добре, чекатиму"
+    if (successButton) {
+        successButton.addEventListener('click', () => {
+            successWrapper.style.opacity = '0';
+            setTimeout(() => {
+                successWrapper.style.display = 'none';
+                formWrapper.style.display = 'block';
+                requestAnimationFrame(() => {
+                    formWrapper.style.opacity = '1';
+                });
+            }, 400);
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.dental-courses__video');
+    const popup = document.getElementById('dentalCoursesPopup');
+    const popupVideo = popup.querySelector('video');
+    const closeBtn = popup.querySelector('.dental-courses__popup-close');
+    const body = document.body;
+
+    videos.forEach(video => {
+        video.addEventListener('mouseenter', () => video.play());
+        video.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        video.addEventListener('click', e => {
+            const src = e.currentTarget.closest('.dental-courses__media').dataset.video;
+            popupVideo.src = src;
+            popup.classList.add('is-active');
+            body.classList.add('lock');
+            popupVideo.play();
+        });
+    });
+
+    const closePopup = () => {
+        popup.classList.remove('is-active');
+        body.classList.remove('lock');
+        popupVideo.pause();
+        popupVideo.src = '';
+    };
+
+    closeBtn.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', e => {
+        if (e.target === popup) closePopup();
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && popup.classList.contains('is-active')) closePopup();
+    });
+});

@@ -49,9 +49,15 @@ $video_file = $dental_courses_section['video_file'] ?? '';
             </div>
         </div>
         <?php if ($video_file) : ?>
-            <div class="dental-courses__media">
-                <img src="<?php echo esc_url($video_file); ?>" alt="Відео" class="dental-courses__video">
+            <div class="dental-courses__media" data-video="<?php echo $video_file; ?>">
+                <video src="<?php echo esc_url($video_file); ?>" muted playsinline class="dental-courses__video"></video>
             </div>
         <?php endif; ?>
+    </div>
+    <div class="dental-courses__popup" id="dentalCoursesPopup">
+        <div class="dental-courses__popup-inner">
+            <span class="dental-courses__popup-close">&times;</span>
+            <video controls playsinline></video>
+        </div>
     </div>
 </section>

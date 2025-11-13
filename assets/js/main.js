@@ -321,3 +321,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.querySelector('#popupForm');
+    const popupContentWrap = popup?.querySelector('.popup__content-wrap');
+    const successContent = popup?.querySelector('.contacts__success-content');
+    const successButton = popup?.querySelector('.contacts__success-button');
+
+    document.querySelectorAll('[data-modal="#popup"]').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            popup?.classList.add('open');
+            document.body.classList.add('lock');
+        });
+    });
+
+    const closePopup = () => {
+        popup?.classList.remove('open');
+        document.body.classList.remove('lock');
+
+        if (popupContentWrap && successContent) {
+            popupContentWrap.style.display = '';
+            successContent.style.display = 'none';
+        }
+    };
+
+    popup?.addEventListener('click', e => {
+        if (e.target === popup || e.target.classList.contains('popup__body')) {
+            closePopup();
+        }
+    });
+
+    successButton?.addEventListener('click', () => {
+        closePopup();
+    });
+
+    document.addEventListener('wpcf7mailsent', event => {
+        if (popupContentWrap && successContent) {
+            popupContentWrap.style.display = 'none';
+            successContent.style.display = 'block';
+            successContent.style.opacity = '0';
+            setTimeout(() => {
+                successContent.style.transition = 'opacity 0.3s ease';
+                successContent.style.opacity = '1';
+            }, 10);
+        }
+
+        const form = event.target;
+        const nameInput = form.querySelector('[name="your-name"]');
+        const phoneInput = form.querySelector('[name="your-phone"]');
+
+        const name = nameInput?.value?.trim() || '';
+        const phone = phoneInput?.value?.trim() || '';
+
+        const nameEl = popup.querySelector('.contacts__success-name');
+        const phoneEl = popup.querySelector('.contacts__success-phone');
+
+        if (nameEl) nameEl.textContent = name ? `Ім'я: ${name}` : '';
+        if (phoneEl) phoneEl.textContent = phone ? `Телефон: ${phone}` : '';
+    });
+});
+

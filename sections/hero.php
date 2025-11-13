@@ -21,8 +21,8 @@ $services = $hero_section['services'] ?? [];
                     <h1 class="hero__title"><?php echo esc_html($title); ?></h1>
                 <?php endif; ?>
 
-                <button data-modal="" type="button" class="hero__button button">
-                    <?php echo esc_html($button['title']); ?>
+                <button data-modal="<?= esc_url($button['url']); ?>" type="button" class="hero__button button">
+                    <?= esc_html($button['title']); ?>
                 </button>
 
             </div>

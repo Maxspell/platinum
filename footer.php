@@ -43,6 +43,25 @@ $copyright = $footer['copyright'] ?? '';
 </footer>
 </div>
 
+<div id="popupForm" class="popup">
+    <div class="popup__body">
+        <div class="popup__content">
+            <div class="popup__content-wrap">
+                <?php echo do_shortcode('[contact-form-7 id="52a0100" title="Contact Form" html_class="contacts-form"]'); ?>
+            </div>
+            <div class="contacts__success-content">
+                <div class="contacts__success-title section-title">Дякуємо!</div>
+                <div class="contacts__success-message">
+                    Найближчим часом з Вами зв’яжеться наш менеджер для консультації.
+                </div>
+                <div class="contacts__success-name"></div>
+                <div class="contacts__success-phone"></div>
+                <button type="button" class="contacts__success-button button">Добре, чекатиму</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php wp_footer(); ?>
 
 </body>

@@ -31,7 +31,7 @@ $product_list = $shop_section['product_list'] ?? [];
                 <?php endif; ?>
 
                 <div class="shop__buttons">
-                    <a href="<?php echo $button_1['url']; ?>" class="shop__button button"><?php echo $button_1['title']; ?></a>
+                    <button data-modal="<?php echo $button_1['url']; ?>" class="shop__button button"><?php echo $button_1['title']; ?></button>
                     <a href="<?php echo $button_2['url']; ?>" class="shop__button button"><?php echo $button_2['title']; ?></a>
                 </div>
             </div>

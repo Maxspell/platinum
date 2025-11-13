@@ -93,22 +93,32 @@
                     <div class="header__right">
                         <?php if (!empty($socials)): ?>
                             <ul class="social social__list" aria-label="Social links">
-                                <?php foreach ($socials as $item):
+                                <?php
+                                $last_index = array_key_last($socials);
+                                foreach ($socials as $index => $item):
                                     $icon = $item['icon'];
                                     $link = $item['link'];
+                                    $is_phone = ($index === $last_index);
                                 ?>
-                                    <li class="social__item">
+                                    <li class="social__item <?= $is_phone ? 'social__item--phone' : '' ?>">
                                         <a class="social__link"
                                             href="<?= esc_url($link['url']); ?>"
                                             target="<?= esc_attr($link['target'] ?: '_blank'); ?>"
                                             aria-label="<?= esc_attr($link['title']); ?>">
                                             <img src="<?= esc_url($icon['url']); ?>" alt="<?= esc_attr($icon['alt']); ?>">
                                         </a>
+
+                                        <?php if (!empty($phone) && $is_phone): ?>
+                                            <ul class="social__dropdown">
+                                                <li><a href="<?= $phone['url']; ?>"><?= $phone['title']; ?></a></li>
+                                            </ul>
+                                        <?php endif; ?>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
                     </div>
+
 
                     <div class="header__burger burger-menu">
                         <span></span>

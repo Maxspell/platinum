@@ -381,3 +381,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+window.addEventListener('load', () => {
+    document.querySelectorAll('video').forEach(video => {
+        video.load();
+    });
+});
+

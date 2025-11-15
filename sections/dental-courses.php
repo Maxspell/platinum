@@ -50,7 +50,7 @@ $video_file = $dental_courses_section['video_file'] ?? '';
         </div>
         <?php if ($video_file) : ?>
             <div class="dental-courses__media" data-video="<?php echo $video_file; ?>">
-                <video src="<?php echo esc_url($video_file); ?>" muted playsinline class="dental-courses__video"></video>
+                <video src="<?php echo esc_url($video_file); ?>" muted playsinline preload="metadata" class="dental-courses__video"></video>
             </div>
         <?php endif; ?>
     </div>

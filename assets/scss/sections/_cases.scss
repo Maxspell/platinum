@@ -29,11 +29,31 @@
         }
     }
 
-    &__slider-wrapper {
-        display: none;
+    &__subtabs {
+        display: flex;
+        margin-bottom: 2.4rem;
 
-        &.is-active {
-            display: block;
+        &-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: auto;
+
+            @media (max-width: 768px) {
+                margin-inline: auto;
+            }
+        }
+
+        &-item {
+            color: #808080;
+            padding: 1.2rem 1.6rem;
+            cursor: pointer;
+
+            &.is-active {
+                color: $color-primary;
+                border-radius: 0.8rem;
+                border: 1px solid #80808033;
+                background: linear-gradient(120.61deg, #333333 0%, #1E1E1E 100%);
+            }
         }
     }
 

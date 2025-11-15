@@ -9,63 +9,48 @@ $title = $cases_section['title'] ?? '';
 $list = $cases_section['list'] ?? [];
 ?>
 
-<section class="cases section">
+<section class="cases section" data-cases>
     <div class="container">
         <?php if ($title) : ?>
             <h2 class="cases__title section-title"><?php echo esc_html($title); ?></h2>
         <?php endif; ?>
 
         <?php if (!empty($list)) : ?>
+
             <div class="cases__tabs">
-                <ul class="cases__tabs-list">
-                    <?php foreach ($list as $index => $item) : ?>
-                        <li class="cases__tabs-item <?php echo $index === 0 ? 'is-active' : ''; ?>" data-tab="case-<?php echo $index; ?>">
+                <ul class="cases__tabs-list js-cases-tabs">
+                    <?php foreach ($list as $i => $item) : ?>
+                        <li class="cases__tabs-item <?php echo $i === 0 ? 'is-active' : ''; ?>"
+                            data-main="<?php echo esc_attr($i); ?>">
                             <?php echo esc_html($item['title'] ?? ''); ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
 
-            <div class="cases__content">
-                <?php foreach ($list as $index => $item) :
-                    $sub_list = $item['sub_list'] ?? [];
-                ?>
-                    <div class="cases__slider-wrapper <?php echo $index === 0 ? 'is-active' : ''; ?>" id="case-<?php echo $index; ?>">
-                        <div class="cases__slider swiper">
-                            <div class="swiper-wrapper">
-                                <?php foreach ($sub_list as $sub_item) : ?>
-                                    <?php
-                                    $type       = $sub_item['type'] ?? '';
-                                    $image      = $sub_item['image'] ?? '';
-                                    $video_file = $sub_item['video_file'] ?? '';
-                                    ?>
-
-                                    <div class="cases__slide swiper-slide">
-                                        <div class="cases__slide-media">
-
-                                            <?php if ($type === 'image' && !empty($image)) : ?>
-                                                <div class="cases__slide-image">
-                                                    <img src="<?php echo esc_url($image); ?>" alt="">
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if ($type === 'file' && !empty($video_file)) : ?>
-                                                <div class="cases__slide-video" data-video="<?php echo esc_url($video_file); ?>">
-                                                    <video src="<?php echo esc_url($video_file); ?>" muted playsinline></video>
-                                                </div>
-                                            <?php endif; ?>
-
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="swiper-button swiper-button--prev"></div>
-                            <div class="swiper-button swiper-button--next"></div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+            <div class="cases__subtabs">
+                <ul class="cases__subtabs-list js-cases-subtabs"></ul>
             </div>
+
+            <div class="cases__content">
+                <div class="cases__slider-wrapper">
+                    <div class="cases__slider swiper js-cases-slider">
+                        <div class="swiper-wrapper js-cases-slides">
+                        </div>
+
+                        <div class="swiper-button swiper-button--prev"></div>
+                        <div class="swiper-button swiper-button--next"></div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="application/json" class="cases__data">
+                <?php echo wp_json_encode($list); ?>
+            </script>
+
         <?php endif; ?>
+
+
     </div>
 
     <div class="cases__popup" id="casesPopup">

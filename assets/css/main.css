@@ -1285,11 +1285,30 @@ button {
   border-radius: 0.8rem;
   background: linear-gradient(120.61deg, #333333 0%, #1E1E1E 100%);
 }
-.cases__slider-wrapper {
-  display: none;
+.cases__subtabs {
+  display: flex;
+  margin-bottom: 2.4rem;
 }
-.cases__slider-wrapper.is-active {
-  display: block;
+.cases__subtabs-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+@media (max-width: 768px) {
+  .cases__subtabs-list {
+    margin-inline: auto;
+  }
+}
+.cases__subtabs-item {
+  color: #808080;
+  padding: 1.2rem 1.6rem;
+  cursor: pointer;
+}
+.cases__subtabs-item.is-active {
+  color: #F5F5F5;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  background: linear-gradient(120.61deg, #333333 0%, #1E1E1E 100%);
 }
 .cases__slide-media {
   aspect-ratio: 380/475;

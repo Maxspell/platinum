@@ -82,45 +82,144 @@ const initSwiper = () => {
     }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    initSwiper();
-});
+function initCasesSlider() {
+    const section = document.querySelector('[data-cases]');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const tabButtons = document.querySelectorAll('.cases__tabs-item');
-    const sliderWrappers = document.querySelectorAll('.cases__slider-wrapper');
+    if (!section) return;
 
-    const sliders = [];
-    document.querySelectorAll('.cases__slider').forEach((el) => {
-        const swiper = new Swiper(el, {
+    const tabsMain = section.querySelector('.js-cases-tabs');
+    const tabsSub = section.querySelector('.js-cases-subtabs');
+    const slidesWrapper = section.querySelector('.js-cases-slides');
+    const jsonEl = section.querySelector('.cases__data');
+    const sliderEl = section.querySelector('.js-cases-slider');
+
+    if (!tabsMain || !tabsSub || !slidesWrapper || !jsonEl || !sliderEl) return;
+
+    let data;
+    try {
+        data = JSON.parse(jsonEl.textContent);
+    } catch (e) {
+        console.error('JSON parse error', e);
+        return;
+    }
+
+    let mainIndex = 0;
+    let subIndex = 0;
+    let swiperInstance = null;
+
+    function createSwiper() {
+        if (swiperInstance) swiperInstance.destroy(true, true);
+
+        swiperInstance = new Swiper(sliderEl, {
             slidesPerView: 1,
             spaceBetween: 0,
+            grabCursor: true,
+            loop: true,
             navigation: {
-                nextEl: el.querySelector('.swiper-button--next'),
-                prevEl: el.querySelector('.swiper-button--prev'),
+                nextEl: sliderEl.querySelector('.swiper-button--next'),
+                prevEl: sliderEl.querySelector('.swiper-button--prev'),
             },
             breakpoints: {
-                768: {
-                    slidesPerView: 3,
-                },
+                768: { slidesPerView: 3 },
             },
-            loop: true,
         });
-        sliders.push(swiper);
-    });
+    }
 
-    tabButtons.forEach((tab) => {
-        tab.addEventListener('click', () => {
-            const targetId = tab.dataset.tab;
+    function renderSubTabs() {
+        tabsSub.innerHTML = '';
 
-            tabButtons.forEach((t) => t.classList.remove('is-active'));
-            sliderWrappers.forEach((w) => w.classList.remove('is-active'));
+        const subTabs = data[mainIndex]?.sub_tabs || [];
 
-            tab.classList.add('is-active');
-            document.getElementById(targetId).classList.add('is-active');
+        subTabs.forEach((sub, i) => {
+            const li = document.createElement('li');
+            li.className = 'cases__subtabs-item' + (i === subIndex ? ' is-active' : '');
+            li.dataset.sub = i;
+            li.textContent = sub.title || `Tab ${i + 1}`;
+            tabsSub.appendChild(li);
         });
-    });
+
+        bindSubTabEvents(); // <— КРИТИЧЕСКИ ВАЖНО
+    }
+
+    function renderSlides() {
+        slidesWrapper.innerHTML = '';
+
+        const subList = data[mainIndex]?.sub_tabs?.[subIndex]?.sub_list || [];
+
+        subList.forEach(slide => {
+            const root = document.createElement('div');
+            root.className = 'cases__slide swiper-slide';
+
+            if (slide.type === 'image') {
+                root.innerHTML = `
+                    <div class="cases__slide-media">
+                        <div class="cases__slide-image">
+                            <img src="${slide.image}" alt="">
+                        </div>
+                    </div>`;
+            }
+
+            if (slide.type === 'file') {
+                root.innerHTML = `
+                    <div class="cases__slide-media">
+                        <div class="cases__slide-video" data-video="${slide.video_file}">
+                            <video src="${slide.video_file}" muted playsinline></video>
+                        </div>
+                    </div>`;
+            }
+
+            slidesWrapper.appendChild(root);
+        });
+
+        createSwiper();
+    }
+
+    function bindSubTabEvents() {
+        const subTabs = tabsSub.querySelectorAll('.cases__subtabs-item');
+
+        subTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                subIndex = Number(tab.dataset.sub);
+
+                // active class
+                subTabs.forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+
+                // перерисовываем слайды
+                renderSlides();
+            });
+        });
+    }
+
+    function bindMainTabEvents() {
+        const mainTabs = tabsMain.querySelectorAll('.cases__tabs-item');
+
+        mainTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                mainIndex = Number(tab.dataset.main);
+                subIndex = 0;
+
+                mainTabs.forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+
+                renderSubTabs(); // <-- ЭТО генерирует новые подтабы + ВЫЗЫВАЕТ bindSubTabEvents
+
+                renderSlides();  // <-- создаёт новый слайдер
+            });
+        });
+    }
+
+    // INIT
+    bindMainTabEvents();
+    renderSubTabs();
+    renderSlides();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initSwiper();
+    initCasesSlider();
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const videos = document.querySelectorAll('.reviews__video video');

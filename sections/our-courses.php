@@ -7,6 +7,8 @@ if (empty($our_courses_section) || $our_courses_section['disabled']) {
 
 $title = $our_courses_section['title'] ?? '';
 $list = $our_courses_section['list'] ?? [];
+$banner_title = $our_courses_section['banner_title'] ?? '';
+$banner_link = $our_courses_section['banner_link'] ?? [];
 ?>
 
 <section class="our-courses section">
@@ -78,5 +80,21 @@ $list = $our_courses_section['list'] ?? [];
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+
+        <div class="our-courses__banner banner">
+            <div class="banner__inner">
+                <div class="banner__col banner__col--left">
+                    <div class="banner__title"><?php echo $banner_title; ?></div>
+                    <?php if (!empty($banner_link)) : ?>
+                        <a href="<?php echo $banner_link['url']; ?>" class="contacts__social-link button contacts__social-link--telegram" target="_blank">
+                            <?php echo $banner_link['title']; ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="banner__col banner__col--right">
+                </div>
+            </div>
+        </div>
     </div>
 </section>

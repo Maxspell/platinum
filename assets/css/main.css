@@ -1746,6 +1746,59 @@ button {
   flex: 1;
 }
 
+.our-courses__banner {
+  margin-top: 3.2rem;
+  border-radius: 1.6rem;
+  overflow: hidden;
+}
+
+.banner {
+  background-color: #2F6EA5;
+}
+.banner__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-block: 2.4rem;
+  padding-inline: 4.8rem;
+  background-image: url(/wp-content/themes/platinum/assets/img/courses-bg.png);
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+@media (max-width: 768px) {
+  .banner__inner {
+    grid-template-columns: 1fr;
+    padding-block: 2.4rem;
+    padding-inline: 2.4rem;
+    background-image: url(/wp-content/themes/platinum/assets/img/courses-bg-m.png);
+    background-position: center bottom;
+    min-height: 36rem;
+  }
+}
+.banner__col--left {
+  max-width: 47.5rem;
+}
+.banner__col--right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner__title {
+  font-family: "Gotham Pro", sans-serif;
+  font-size: 2.4rem;
+  color: #fff;
+  line-height: 1.333;
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+@media (max-width: 768px) {
+  .banner__title {
+    font-size: 1.8rem;
+  }
+}
+.banner .button {
+  margin: 0 auto;
+}
+
 .shop {
   background-color: #F5F5F5;
 }

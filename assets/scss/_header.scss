@@ -1,6 +1,11 @@
 .header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: $color-bg-primary;
     padding-block: 2.4rem;
+    z-index: 1000;
 
     &__inner {
         display: grid;

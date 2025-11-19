@@ -208,6 +208,13 @@ summary {
   font-display: swap;
 }
 @font-face {
+  font-family: "Helvetica";
+  src: url("../fonts/Helvetica-Bold.woff2") format("woff2"), url("../fonts/Helvetica-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Gotham Pro";
   src: url("../fonts/GothamPro.woff2") format("woff2"), url("../fonts/GothamPro.woff") format("woff");
   font-weight: 400;
@@ -311,6 +318,7 @@ button {
 
 .main {
   flex: 1;
+  padding-block-start: 9.6rem;
 }
 
 .section {
@@ -495,8 +503,13 @@ button {
 }
 
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0A0A0A;
   padding-block: 2.4rem;
+  z-index: 1000;
 }
 .header__inner {
   display: grid;
@@ -725,7 +738,6 @@ button {
 
 .hero {
   position: relative;
-  aspect-ratio: 1440/904;
   overflow: hidden;
 }
 
@@ -745,9 +757,20 @@ button {
 }
 
 .hero__media {
+  aspect-ratio: 1440/904;
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+@media (max-width: 768px) {
+  .hero__media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0) 10.83%, #0A0A0A 92.71%);
+    z-index: 1;
+    pointer-events: none;
+  }
 }
 
 .hero__media img {
@@ -769,7 +792,12 @@ button {
 }
 
 .hero__content {
-  margin-top: 32rem;
+  padding-top: 32rem;
+}
+@media (max-width: 768px) {
+  .hero__content {
+    padding-top: 28rem;
+  }
 }
 
 .hero__title {
@@ -778,18 +806,39 @@ button {
   line-height: 1.1;
   color: #F5F5F5;
 }
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 3.8rem;
+    text-align: center;
+  }
+}
 
 .hero__button {
   margin-block-start: 2.4rem;
+}
+@media (max-width: 768px) {
+  .hero__button {
+    width: 100%;
+  }
 }
 
 .hero__services {
   margin-block-start: 8rem;
 }
+@media (max-width: 768px) {
+  .hero__services {
+    margin-block-start: 3.2rem;
+  }
+}
 
 .hero__services-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 768px) {
+  .hero__services-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .hero__services-item {
@@ -802,6 +851,15 @@ button {
 }
 .hero__services-item:nth-child(3n) {
   border-right: 0;
+}
+@media (max-width: 768px) {
+  .hero__services-item {
+    flex-direction: column;
+    gap: 0.8rem;
+    border: 0;
+    padding: 1.6rem 0;
+    text-align: center;
+  }
 }
 
 .hero__services-icon {
@@ -893,7 +951,9 @@ button {
 @media (max-width: 768px) {
   .why-us__item-title {
     font-size: 1.6rem;
+    font-weight: 700;
     line-height: 1.25;
+    margin-bottom: 0.4rem;
   }
 }
 
@@ -1122,6 +1182,13 @@ button {
     font-size: 2.4rem;
   }
 }
+.services h3 {
+  font-family: "Gotham Pro", sans-serif;
+  font-size: 2.4rem;
+  line-height: 1.333;
+  margin-bottom: 0.8rem;
+}
+
 .services__content {
   display: flex;
   align-items: flex-start;
@@ -1261,6 +1328,11 @@ button {
   display: none;
   padding-left: 5.6rem;
 }
+@media (max-width: 768px) {
+  .services__sub-list {
+    padding-left: 0;
+  }
+}
 
 .services__sub-list.active {
   display: block;
@@ -1270,12 +1342,23 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 2.4rem;
-  padding-block: 0.4rem;
-  border-bottom: 1px dashed rgba(245, 245, 245, 0.0509803922);
+  padding-block-start: 0.8rem;
+  padding-block-end: 0.4rem;
+  position: relative;
 }
 
-.services__sub-item:last-child {
-  border-bottom: 0;
+.services__sub-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-image: repeating-linear-gradient(to right, rgba(245, 245, 245, 0.0509803922) 0 4px, transparent 4px 6px);
+}
+
+.services__sub-item:last-child::after {
+  display: none;
 }
 
 .cases__title {
@@ -1663,6 +1746,7 @@ button {
 .our-courses__label {
   font-size: 1.2rem;
   line-height: 1.333;
+  font-weight: 700;
   border-radius: 0.4rem;
   padding: 0.2rem 0.8rem 0.6rem 0.8rem;
 }
@@ -1814,6 +1898,11 @@ button {
 }
 .banner .button {
   margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .banner .button {
+    width: 100%;
+  }
 }
 
 .shop {
@@ -1987,6 +2076,11 @@ button {
   align-items: center;
   gap: 1rem;
 }
+@media (max-width: 768px) {
+  .contacts__social li {
+    flex: 1 1 50%;
+  }
+}
 
 .contacts__social-title {
   font-size: 1.8rem;
@@ -1998,6 +2092,11 @@ button {
   align-items: center;
   gap: 0.8rem;
   padding: 1.1rem;
+}
+@media (max-width: 768px) {
+  .contacts__social-link {
+    width: 100%;
+  }
 }
 .contacts__social-link::before {
   content: "";
@@ -2114,12 +2213,6 @@ button {
   padding-top: 8rem;
   padding-bottom: 4rem;
 }
-@media (max-width: 768px) {
-  .footer {
-    padding-top: 6.4rem;
-  }
-}
-
 .footer__logo {
   text-align: center;
   margin-bottom: 4rem;
@@ -2132,25 +2225,22 @@ button {
     width: 29.6rem;
   }
 }
-
 .footer__bottom {
   display: flex;
   justify-content: space-between;
+  gap: 2.4rem;
 }
 @media (max-width: 768px) {
   .footer__bottom {
     flex-direction: column;
     align-items: center;
-    gap: 2.4rem;
   }
 }
-
 .footer__phone {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-
 .footer__phone::before {
   content: "";
   display: inline-block;
@@ -2160,4 +2250,9 @@ button {
   background-repeat: no-repeat;
   background-size: contain;
   flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 6.4rem;
+  }
 }/*# sourceMappingURL=main.css.map */

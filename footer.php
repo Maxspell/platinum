@@ -15,6 +15,7 @@
 $footer = get_field('footer', 'options');
 $logo = $footer['logo'] ?? '';
 $phone = $footer['phone'] ?? [];
+$email = $footer['email'] ?? [];
 $copyright = $footer['copyright'] ?? '';
 $contact_form = $footer['contact_form'] ?? '';
 ?>
@@ -32,12 +33,21 @@ $contact_form = $footer['contact_form'] ?? '';
             </div>
 
             <div class="footer__bottom">
-                <div class="footer__phone">
-                    <a href="<?php echo $phone['url']; ?>"><?php echo $phone['title']; ?></a>
-                </div>
-                <div class="footer__copyright">
-                    <span><?php echo $copyright; ?></span>
-                </div>
+                <?php if (!empty($phone)) : ?>
+                    <div class="footer__phone">
+                        <a href="<?php echo $phone['url']; ?>"><?php echo $phone['title']; ?></a>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($email)) : ?>
+                    <div class="footer__email">
+                        <a href="<?php echo $email['url']; ?>"><?php echo $email['title']; ?></a>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($copyright)) : ?>
+                    <div class="footer__copyright">
+                        <span><?php echo $copyright; ?></span>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -31,7 +31,7 @@ $google_map = $contacts_section['google_map'] ?? '';
                     <?php echo $address; ?>
                 </div>
                 <?php if (!empty($social_list)) : ?>
-                    <div class="contacts__social-title">Соцмережі</div>
+                    <div class="contacts__social-title"><?php pll_e('Social networks'); ?></div>
                     <ul class="contacts__social">
                         <?php foreach ($social_list as $item) : ?>
                             <li>
@@ -45,18 +45,18 @@ $google_map = $contacts_section['google_map'] ?? '';
             </div>
             <div class="contacts__column">
                 <div class="contacts__form">
-                    <?php echo do_shortcode('[contact-form-7 id="52a0100" title="Contact Form" html_class="contacts-form"]'); ?>
+                    <?php echo do_shortcode($contact_form); ?>
                 </div>
 
                 <div class="contacts__success">
                     <div class="contacts__success-content">
-                        <div class="contacts__success-title section-title">Дякуємо!</div>
+                        <div class="contacts__success-title section-title"><?php pll_e('Thank you!'); ?></div>
                         <div class="contacts__success-message">
-                            Найближчим часом з Вами зв’яжеться наш менеджер для консультації.
+                            <?php pll_e('Our manager will contact you shortly for a consultation.'); ?>
                         </div>
                         <div class="contacts__success-name"></div>
                         <div class="contacts__success-phone"></div>
-                        <button type="button" class="contacts__success-button button">Добре, чекатиму</button>
+                        <button type="button" class="contacts__success-button button"><?php pll_e('Okay, I will wait'); ?></button>
                     </div>
                 </div>
             </div>

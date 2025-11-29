@@ -137,6 +137,7 @@
 .services__item-price {
     color: #808080;
     margin-left: auto;
+    white-space: nowrap;
 }
 
 .services__sub-list {
@@ -155,6 +156,7 @@
 .services__sub-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 2.4rem;
     padding-block-start: 0.8rem;
     padding-block-end: 0.4rem;
@@ -175,6 +177,10 @@
 
 .services__sub-item:last-child::after {
     display: none;
+}
+
+.services__sub-price {
+    white-space: nowrap;
 }
 
 .services__sub-title {}

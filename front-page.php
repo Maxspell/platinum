@@ -9,6 +9,7 @@
     get_template_part('sections/cases');
     get_template_part('sections/dental-courses');
     get_template_part('sections/our-courses');
+    get_template_part('sections/courses-gallery');
     get_template_part('sections/lab-services');
     get_template_part('sections/doctors');
     get_template_part('sections/shop');

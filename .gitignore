@@ -1,0 +1,54 @@
+# WordPress core
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/xmlrpc.php
+/license.txt
+/readme.html
+
+# WordPress local config
+/wp-config.php
+/wp-config-local.php
+/.htaccess
+
+# WordPress generated content
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/backup*/
+/wp-content/cache/
+/wp-content/blogs.dir/
+/wp-content/advanced-cache.php
+/wp-content/wp-cache-config.php
+
+# Common WordPress plugin/theme generated files
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build artifacts
+/dist/
+/build/
+/assets/dist/
+/assets/build/
+*.map
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.agents/

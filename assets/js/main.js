@@ -225,9 +225,140 @@ function initCasesSlider() {
     renderSlides();
 }
 
+function initCoursesGallerySlider() {
+    const section = document.querySelector('[data-courses-gallery]');
+
+    if (!section) return;
+
+    const tabsMain = section.querySelector('.js-courses-gallery-tabs');
+    const tabsSub = section.querySelector('.js-courses-gallery-subtabs');
+    const slidesWrapper = section.querySelector('.js-courses-gallery-slides');
+    const jsonEl = section.querySelector('.courses-gallery__data');
+    const sliderEl = section.querySelector('.js-courses-gallery-slider');
+
+    if (!tabsMain || !tabsSub || !slidesWrapper || !jsonEl || !sliderEl) return;
+
+    let data;
+    try {
+        data = JSON.parse(jsonEl.textContent);
+    } catch (e) {
+        console.error('JSON parse error', e);
+        return;
+    }
+
+    let mainIndex = 0;
+    let subIndex = 0;
+    let swiperInstance = null;
+
+    function createSwiper() {
+        if (swiperInstance) swiperInstance.destroy(true, true);
+
+        swiperInstance = new Swiper(sliderEl, {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            grabCursor: true,
+            loop: true,
+            navigation: {
+                nextEl: sliderEl.querySelector('.swiper-button--next'),
+                prevEl: sliderEl.querySelector('.swiper-button--prev'),
+            },
+            breakpoints: {
+                768: { slidesPerView: 3 },
+            },
+        });
+    }
+
+    function renderSubTabs() {
+        tabsSub.innerHTML = '';
+
+        const subTabs = data[mainIndex]?.sub_tabs || [];
+
+        subTabs.forEach((sub, i) => {
+            const li = document.createElement('li');
+            li.className = 'courses-gallery__subtabs-item' + (i === subIndex ? ' is-active' : '');
+            li.dataset.sub = i;
+            li.textContent = sub.title || `Tab ${i + 1}`;
+            tabsSub.appendChild(li);
+        });
+
+        bindSubTabEvents();
+    }
+
+    function renderSlides() {
+        slidesWrapper.innerHTML = '';
+
+        const subList = data[mainIndex]?.sub_tabs?.[subIndex]?.sub_list || [];
+
+        subList.forEach(slide => {
+            const root = document.createElement('div');
+            root.className = 'courses-gallery__slide swiper-slide';
+
+            if (slide.type === 'image') {
+                root.innerHTML = `
+                    <div class="courses-gallery__slide-media">
+                        <div class="courses-gallery__slide-image">
+                            <img src="${slide.image}" alt="">
+                        </div>
+                    </div>`;
+            }
+
+            if (slide.type === 'file') {
+                root.innerHTML = `
+                    <div class="courses-gallery__slide-media">
+                        <div class="courses-gallery__slide-video" data-video="${slide.video_file}">
+                            <video src="${slide.video_file}" muted playsinline></video>
+                        </div>
+                    </div>`;
+            }
+
+            slidesWrapper.appendChild(root);
+        });
+
+        createSwiper();
+    }
+
+    function bindSubTabEvents() {
+        const subTabs = tabsSub.querySelectorAll('.courses-gallery__subtabs-item');
+
+        subTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                subIndex = Number(tab.dataset.sub);
+
+                subTabs.forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+
+                renderSlides();
+            });
+        });
+    }
+
+    function bindMainTabEvents() {
+        const mainTabs = tabsMain.querySelectorAll('.courses-gallery__tabs-item');
+
+        mainTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                mainIndex = Number(tab.dataset.main);
+                subIndex = 0;
+
+                mainTabs.forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+
+                renderSubTabs();
+                renderSlides();
+            });
+        });
+    }
+
+    // INIT
+    bindMainTabEvents();
+    renderSubTabs();
+    renderSlides();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     initSwiper();
     initCasesSlider();
+    initCoursesGallerySlider();
 });
 
 
@@ -292,6 +423,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
         video.addEventListener('click', e => {
             const src = e.currentTarget.closest('.cases__slide-video').dataset.video;
+            popupVideo.src = src;
+            popup.classList.add('is-active');
+            body.classList.add('lock');
+            popupVideo.play();
+        });
+    });
+
+    const closePopup = () => {
+        popup.classList.remove('is-active');
+        body.classList.remove('lock');
+        popupVideo.pause();
+        popupVideo.src = '';
+    };
+
+    closeBtn.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', e => {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && popup.classList.contains('is-active')) {
+            closePopup();
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.courses-gallery__slide-video video');
+    const popup = document.getElementById('coursesGalleryPopup');
+
+    if (!popup) return;
+
+    const popupVideo = popup.querySelector('video');
+    const closeBtn = popup.querySelector('.courses-gallery__popup-close');
+    const body = document.body;
+
+    videos.forEach(video => {
+        video.addEventListener('mouseenter', () => video.play());
+        video.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        video.addEventListener('click', e => {
+            const src = e.currentTarget.closest('.courses-gallery__slide-video').dataset.video;
             popupVideo.src = src;
             popup.classList.add('is-active');
             body.classList.add('lock');

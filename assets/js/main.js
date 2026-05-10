@@ -4,11 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     headers.forEach(header => {
         header.addEventListener('click', () => {
             const subList = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
 
-            header.classList.toggle('active');
+            headers.forEach(h => {
+                h.classList.remove('active');
+                const sub = h.nextElementSibling;
+                if (sub && sub.classList.contains('services__sub-list')) {
+                    sub.classList.remove('active');
+                }
+            });
 
-            if (subList && subList.classList.contains('services__sub-list')) {
-                subList.classList.toggle('active');
+            if (!isActive) {
+                header.classList.add('active');
+                if (subList && subList.classList.contains('services__sub-list')) {
+                    subList.classList.add('active');
+                }
             }
         });
     });
@@ -423,12 +433,26 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const popup = document.querySelector('#popupForm');
     const popupContentWrap = popup?.querySelector('.popup__content-wrap');
+    const popupForms = popup?.querySelectorAll('[data-popup-form]');
     const successContent = popup?.querySelector('.contacts__success-content');
     const successButton = popup?.querySelector('.contacts__success-button');
+
+    const setActiveForm = formName => {
+        if (!popupForms?.length) return;
+
+        const targetForm = popup.querySelector(`[data-popup-form="${formName}"]`)
+            || popup.querySelector('[data-popup-form="contact"]')
+            || popupForms[0];
+
+        popupForms.forEach(form => {
+            form.hidden = form !== targetForm;
+        });
+    };
 
     document.querySelectorAll('[data-modal="#popup"]').forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
+            setActiveForm(btn.dataset.modalForm || 'contact');
             popup?.classList.add('open');
             document.body.classList.add('lock');
         });
@@ -442,6 +466,8 @@ document.addEventListener('DOMContentLoaded', () => {
             popupContentWrap.style.display = '';
             successContent.style.display = 'none';
         }
+
+        setActiveForm('contact');
     };
 
     popup?.addEventListener('click', e => {
@@ -455,6 +481,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('wpcf7mailsent', event => {
+        const form = event.target;
+
+        if (!popup?.contains(form)) return;
+
         if (popupContentWrap && successContent) {
             popupContentWrap.style.display = 'none';
             successContent.style.display = 'block';
@@ -465,7 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 10);
         }
 
-        const form = event.target;
         const nameInput = form.querySelector('[name="your-name"]');
         const phoneInput = form.querySelector('[name="your-phone"]');
 

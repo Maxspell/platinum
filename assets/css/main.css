@@ -2166,6 +2166,21 @@ button {
   outline: none;
 }
 
+.contacts-form__select {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #333;
+    background-color: transparent;
+    color: #F5F5F5;
+    padding: 1.6rem;
+    outline: none;
+}
+
+.contacts-form__select option {
+    background-color: #1D1D1D;
+    color: #F5F5F5;
+}
+
 .contacts-form__agreement {
   display: flex;
   align-items: center;

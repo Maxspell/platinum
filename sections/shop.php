@@ -32,7 +32,7 @@ $product_list = $shop_section['product_list'] ?? [];
 
                 <div class="shop__buttons">
                     <button data-modal="<?php echo $button_1['url']; ?>" class="shop__button button"><?php echo $button_1['title']; ?></button>
-                    <a href="<?php echo $button_2['url']; ?>" class="shop__button button"><?php echo $button_2['title']; ?></a>
+                    <a href="<?php echo $button_2['url']; ?>" class="shop__button button" target="_blank"><?php echo $button_2['title']; ?></a>
                 </div>
             </div>
             <div class="shop__column">

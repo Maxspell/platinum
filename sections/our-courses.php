@@ -53,7 +53,7 @@ $banner_link = $our_courses_section['banner_link'] ?? [];
 
                         <footer class="our-courses__footer">
                             <?php if (!empty($item_button['title'])) : ?>
-                                <button data-modal="<?= esc_url($item_button['url']) ?>" type="button" class="our-courses__button button">
+                                <button data-modal="<?= esc_url($item_button['url']) ?>" data-modal-form="course" type="button" class="our-courses__button button">
                                     <?= esc_html($item_button['title']) ?>
                                 </button>
                             <?php endif; ?>

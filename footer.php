@@ -18,6 +18,7 @@ $phone = $footer['phone'] ?? [];
 $email = $footer['email'] ?? [];
 $copyright = $footer['copyright'] ?? '';
 $contact_form = $footer['contact_form'] ?? '';
+$course_form = $footer['course_form'] ?? $footer['сourse_form'] ?? '';
 ?>
 <footer class="footer">
     <div class="container container--secondary">
@@ -58,7 +59,16 @@ $contact_form = $footer['contact_form'] ?? '';
     <div class="popup__body">
         <div class="popup__content">
             <div class="popup__content-wrap">
-                <?php echo do_shortcode($contact_form); ?>
+                <?php if (!empty($contact_form)) : ?>
+                    <div class="popup__form" data-popup-form="contact">
+                        <?php echo do_shortcode($contact_form); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($course_form)) : ?>
+                    <div class="popup__form" data-popup-form="course" hidden>
+                        <?php echo do_shortcode($course_form); ?>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="contacts__success-content">
                 <div class="contacts__success-title section-title"><?php pll_e('Thank you!'); ?></div>
